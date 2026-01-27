@@ -1,0 +1,64 @@
+{
+  "name": "solana-momentum-bot",
+  "version": "1.0.0",
+  "description": "Solana momentum trading bot for Pump.fun token migration detection",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node --esm src/index.ts",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "db:setup": "ts-node --esm scripts/setup-db.ts",
+    "verify": "ts-node --esm scripts/verify-setup.ts",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "solana",
+    "trading-bot",
+    "pump.fun",
+    "momentum",
+    "defi"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@solana/kit": "^2.1.0",
+    "@solana-program/system": "^0.7.0",
+    "@solana-program/token": "^0.5.0",
+    "@solana-program/compute-budget": "^0.7.0",
+    "@solana/compat": "^2.1.0",
+    "@triton-one/yellowstone-grpc": "^2.0.0",
+    "helius-sdk": "^1.5.0",
+    "jito-ts": "^4.0.0",
+    "pg": "^8.13.0",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0",
+    "dotenv": "^16.4.0",
+    "decimal.js": "^10.4.0",
+    "bs58": "^6.0.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "ts-node": "^10.9.0",
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.11.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.0",
+    "@types/jest": "^29.5.0",
+    "eslint": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "prettier": "^3.4.0",
+    "rimraf": "^6.0.0"
+  }
+}
