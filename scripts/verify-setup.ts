@@ -49,7 +49,8 @@ async function verifyEnvironment(): Promise<void> {
   ];
 
   const optionalVars = [
-    'HELIUS_GRPC_URL',
+    'CHAINSTACK_GRPC_URL',
+    'CHAINSTACK_GRPC_TOKEN',
     'WALLET_2_PRIVATE_KEY',
     'WALLET_3_PRIVATE_KEY',
     'DISCORD_WEBHOOK_URL',

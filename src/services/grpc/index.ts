@@ -106,15 +106,17 @@ class GrpcService {
     try {
       const env = getEnvConfig();
 
-      if (!env.HELIUS_GRPC_URL) {
-        throw new GRPCError('HELIUS_GRPC_URL not configured');
+      if (!env.CHAINSTACK_GRPC_URL) {
+        throw new GRPCError('CHAINSTACK_GRPC_URL is required for gRPC streaming');
       }
 
       this.config = {
         ...DEFAULT_CONFIG,
-        endpoint: env.HELIUS_GRPC_URL,
-        authToken: env.HELIUS_API_KEY,
+        endpoint: env.CHAINSTACK_GRPC_URL,
+        authToken: env.CHAINSTACK_GRPC_TOKEN,
       };
+
+      this.logger.info('Using Chainstack gRPC endpoint');
 
       // Initialize circuit breaker
       this.circuitBreaker = createGrpcCircuitBreaker('grpc-stream');

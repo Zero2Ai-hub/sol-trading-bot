@@ -20,10 +20,13 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   LOG_LEVEL: z.enum(['error', 'warn', 'info', 'debug', 'trace']).default('info'),
 
-  // Helius RPC Configuration
+  // Chainstack gRPC Configuration (Primary for Yellowstone gRPC)
+  CHAINSTACK_GRPC_URL: z.string().url('CHAINSTACK_GRPC_URL must be a valid URL').optional(),
+  CHAINSTACK_GRPC_TOKEN: z.string().optional(),
+
+  // Helius RPC Configuration (Used for RPC calls, WebSocket, backup)
   HELIUS_RPC_URL: z.string().url('HELIUS_RPC_URL must be a valid URL'),
   HELIUS_WS_URL: z.string().url('HELIUS_WS_URL must be a valid URL'),
-  HELIUS_GRPC_URL: z.string().url('HELIUS_GRPC_URL must be a valid URL').optional(),
   HELIUS_API_KEY: z.string().min(1, 'HELIUS_API_KEY is required'),
   BACKUP_RPC_URLS: z
     .string()
@@ -172,6 +175,7 @@ export function getSanitizedConfig(): Record<string, unknown> {
     WALLET_3_PRIVATE_KEY: config.WALLET_3_PRIVATE_KEY ? '[REDACTED]' : undefined,
     WALLET_ENCRYPTION_KEY: config.WALLET_ENCRYPTION_KEY ? '[REDACTED]' : undefined,
     HELIUS_API_KEY: '[REDACTED]',
+    CHAINSTACK_GRPC_TOKEN: config.CHAINSTACK_GRPC_TOKEN ? '[REDACTED]' : undefined,
     DATABASE_URL: config.DATABASE_URL.replace(/:[^:@]+@/, ':****@'),
     DISCORD_WEBHOOK_URL: config.DISCORD_WEBHOOK_URL ? '[REDACTED]' : undefined,
     TELEGRAM_BOT_TOKEN: config.TELEGRAM_BOT_TOKEN ? '[REDACTED]' : undefined,
